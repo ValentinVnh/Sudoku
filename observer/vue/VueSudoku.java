@@ -5,22 +5,22 @@ import observer.modele.ModelSudoku;
 import java.util.Scanner;
 
 public class VueSudoku{
-    private final ModelSudoku model;
+    private final ModelSudoku modelSudoku;
 
-    public VueSudoku(ModelSudoku model) {
-        this.model = model;
+    public VueSudoku(ModelSudoku modelSudoku) {
+        this.modelSudoku = modelSudoku;
     }
 
     public void display() {
-        for (int row = 0; row < model.getBoardSize(); row++) {
-            if (row % model.getBlockSize() == 0) {
+        for (int row = 0; row < modelSudoku.getBoardSize(); row++) {
+            if (row % modelSudoku.getBlockSize() == 0) {
                 System.out.println(" -----------------------");
             }
-            for (int col = 0; col < model.getBoardSize(); col++) {
-                if (col % model.getBlockSize() == 0) {
+            for (int col = 0; col < modelSudoku.getBoardSize(); col++) {
+                if (col % modelSudoku.getBlockSize() == 0) {
                     System.out.print("| ");
                 }
-                int value = model.getValueAt(row, col);
+                int value = modelSudoku.getValueAt(row, col);
                 if (value == 0) {
                     System.out.print("  ");
                 } else {
