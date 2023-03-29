@@ -81,7 +81,6 @@ public class ModelSudoku {
 
 
     public int getBlockSize() {
-
         return (int) Math.sqrt(board[0].length);
     }
 
