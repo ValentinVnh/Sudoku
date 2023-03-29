@@ -12,7 +12,7 @@ public class ModelSudoku {
 
     private final ArrayList<SudokuObserver> observers = new ArrayList<>();
     private int[][] board;
-    private final VueSudoku vue = new VueSudoku(this);
+    private final VueSudoku vueSudoku = new VueSudoku(this);
 
     public ModelSudoku(String fileName) {
         try {
@@ -50,8 +50,8 @@ public class ModelSudoku {
         }
 
         // Check column
-        for (int i = 0; i < board.length; i++) {
-            if (board[i][col] == value) {
+        for (int[] ints : board) {
+            if (ints[col] == value) {
                 return false;
             }
         }
@@ -67,13 +67,12 @@ public class ModelSudoku {
                 }
             }
         }
-        notifyObservers(); //TODO: à déplacer
         return true;
     }
 
     public void setValueAt(int row, int col, int value) {
         board[row][col] = value;
-        //update(row, col, value);
+        notifyObservers(row, col, value, vueSudoku);
     }
 
     public int getBoardSize() {
@@ -107,9 +106,9 @@ public class ModelSudoku {
         observers.add(observer);
     }
 
-    public void notifyObservers() {
+    public void notifyObservers(int row, int col, int value, VueSudoku vueSudoku) {
         for (SudokuObserver observer : observers) {
-            System.out.println("notifyObservers");
+            observer.update(row, col, value, vueSudoku);
         }
     }
 }

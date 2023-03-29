@@ -1,9 +1,9 @@
 package antipattern;
 
-import java.io.*;
-import java.util.Iterator;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Scanner;
-import java.util.stream.Stream;
 
 public class Sudoku {
 
@@ -45,8 +45,8 @@ public class Sudoku {
         }
 
         // Check column
-        for (int i = 0; i < board.length; i++) {
-            if (board[i][col] == value) {
+        for (int[] ints : board) {
+            if (ints[col] == value) {
                 return false;
             }
         }
@@ -120,10 +120,12 @@ public class Sudoku {
         System.out.println(" -----------------------");
     }
 
+    private int i = 0;
+
     public void update(int row, int col, int value) {
         System.out.println("Cell at row " + row + ", column " + col + " updated to " + value);
         display();
-
+        System.out.println("Iteration " + i++);
     }
 
     public void displayWelcomeMessage() {
@@ -155,8 +157,7 @@ public class Sudoku {
     public int askUserForValue() {
         System.out.print("Enter value (1-9): ");
         Scanner scanner = new Scanner(System.in);
-        int value = Integer.parseInt(scanner.nextLine());
-        return value;
+        return Integer.parseInt(scanner.nextLine());
     }
 
     public void displayVictoryMessage() {
