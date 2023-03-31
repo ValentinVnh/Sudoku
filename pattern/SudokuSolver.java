@@ -1,9 +1,9 @@
-package observer;
+package pattern;
 
 
-import observer.modele.ModelSudoku;
+import pattern.modele.ModelSudoku;
 
-public class SudokuSolver {
+public class SudokuSolver implements SudokuStrategie {
 
     public boolean solve(ModelSudoku sudoku) {
         return solveCell(0, 0, sudoku);
@@ -16,7 +16,7 @@ public class SudokuSolver {
         }
 
         // Calcul de la prochaine cellule à traiter
-        int nextRow = column == sudoku.getBoardSize()-1 ? row + 1 : row;
+        int nextRow = column == sudoku.getBoardSize() - 1 ? row + 1 : row;
         int nextColumn = (column + 1) % sudoku.getBoardSize();
 
         // Si la cellule actuelle est déjà remplie, passer à la suivante

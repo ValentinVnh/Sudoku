@@ -46,3 +46,8 @@ Pour séparer la classe Sudoku en une entité vue et une entité modèle, il fau
 
 Pour utiliser la pattern Observateur et faire en sorte qu'une mise à jour d'une cellule du Sudoku déclenche une action sur la vue, il faut créer une classe ObserverSudoku qui implémente l'interface Observateur.
 
+## Commande
+
+### 1 - Comment utiliser la pattern Commande afin de mettre en place ce système ?
+
+Le pattern Commande, nous permet de mettre en place un système qui permet de définir une interface pour exécuter une action. Il permet de séparer complètement l'invocateur de l'exécuteur.

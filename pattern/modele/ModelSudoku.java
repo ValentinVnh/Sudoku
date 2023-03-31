@@ -1,7 +1,9 @@
-package observer.modele;
+package pattern.modele;
 
-import observer.observer.SudokuObserver;
-import observer.vue.VueSudoku;
+import pattern.SudokuStrategie;
+import pattern.observer.CaseObserver;
+import pattern.observer.SudokuObserver;
+import pattern.vue.VueSudoku;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -12,9 +14,10 @@ public class ModelSudoku {
 
     private final ArrayList<SudokuObserver> observers = new ArrayList<>();
     private int[][] board;
-    private final VueSudoku vueSudoku = new VueSudoku(this);
+    private VueSudoku vueSudoku;
+    private SudokuStrategie strategy;
 
-    public ModelSudoku(String fileName) {
+    public ModelSudoku(String fileName, VueSudoku vueSudoku) {
         try {
             BufferedReader readerNb = new BufferedReader(new FileReader("dataset/" + fileName));
             BufferedReader reader = new BufferedReader(new FileReader("dataset/" + fileName));
@@ -32,6 +35,8 @@ public class ModelSudoku {
                 }
                 row++;
             }
+            addObserver(new CaseObserver());
+            this.vueSudoku = vueSudoku;
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -72,7 +77,7 @@ public class ModelSudoku {
 
     public void setValueAt(int row, int col, int value) {
         board[row][col] = value;
-        notifyObservers(row, col, value, vueSudoku);
+        notifyObservers(row, col, value);
     }
 
     public int getBoardSize() {
@@ -105,9 +110,40 @@ public class ModelSudoku {
         observers.add(observer);
     }
 
-    public void notifyObservers(int row, int col, int value, VueSudoku vueSudoku) {
+    public void notifyObservers(int row, int col, int value) {
         for (SudokuObserver observer : observers) {
-            observer.update(row, col, value, vueSudoku);
+            observer.update(row, col, value, vueSudoku, this);
         }
+    }
+
+    public void setSudokuStrategy(SudokuStrategie strategy) {
+        this.strategy = strategy;
+    }
+
+    public Boolean solve() {
+        return strategy.solve(this);
+    }
+
+    public void joueurPartie() {
+        vueSudoku.displayWelcomeMessage();
+        while (!isGameFinished()) {
+            vueSudoku.display(this);
+            int[] coords = getCoordsJoueur();
+            int value = getValueJoueur();
+            if (isValueValid(coords[0], coords[1], value)) {
+                setValueAt(coords[0], coords[1], value);
+            } else {
+                vueSudoku.displayIncorrectMessage();
+            }
+        }
+        vueSudoku.displayVictoryMessage();
+    }
+
+    public int[] getCoordsJoueur(){
+        return vueSudoku.askUserForCoords();
+    }
+
+    public int getValueJoueur(){
+        return vueSudoku.askUserForValue();
     }
 }
