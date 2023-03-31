@@ -73,9 +73,8 @@ public class VueSudoku {
         System.out.println("Congratulations, you won the game!");
     }
 
-
-    public void displayIncorrectMessage(){
-        System.out.println("Incorrect value");
+    public void displayErrorValueMessage() {
+        System.out.println("Invalid value, please try again.");
     }
 
     public void solve(SudokuStrategie strategy) {
@@ -89,21 +88,17 @@ public class VueSudoku {
         return Integer.parseInt(scanner.nextLine());
     }
 
-    public void affichageJoueur(){
-while (true) {
-        int result = askTest();
-    if (result == 1) {
+    public void affichageJoueur() {
         controllerSudoku.setCommandes("placer", new CommandePlacer());
-        controllerSudoku.executeCommande("placer");
-    }
-    if (result == 2) {
-        controllerSudoku.undoCommande("placer");
-    }
-    if (result == 3) {
         controllerSudoku.setCommandes("quitter", new CommandeQuitter());
-        controllerSudoku.executeCommande("quitter");
-    }
-}
-        //controllerSudoku.joueurPartie();
+
+        displayWelcomeMessage();
+        controllerSudoku.plateauBase();
+        switch (askTest()) {
+            case 1 -> controllerSudoku.executeCommande("placer");
+            case 2 -> controllerSudoku.undoCommande("placer");
+            case 3 -> controllerSudoku.executeCommande("quitter");
+        }
+        controllerSudoku.joueurPartie();
     }
 }

@@ -124,26 +124,19 @@ public class ModelSudoku {
         return strategy.solve(this);
     }
 
-    public void joueurPartie() {
-        vueSudoku.displayWelcomeMessage();
+    public void plateauActuelle() {
         while (!isGameFinished()) {
-            vueSudoku.display(this);
-            int[] coords = getCoordsJoueur();
-            int value = getValueJoueur();
-            if (isValueValid(coords[0], coords[1], value)) {
-                setValueAt(coords[0], coords[1], value);
-            } else {
-                vueSudoku.displayIncorrectMessage();
+            int[] coords = vueSudoku.askUserForCoords();
+            int value = vueSudoku.askUserForValue();
+            if (isValueValid(coords[0], coords[1], value)) { // Model
+                setValueAt(coords[0], coords[1], value); // Model
+            }else{
+                vueSudoku.displayErrorValueMessage();
             }
         }
-        vueSudoku.displayVictoryMessage();
     }
 
-    public int[] getCoordsJoueur(){
-        return vueSudoku.askUserForCoords();
-    }
-
-    public int getValueJoueur(){
-        return vueSudoku.askUserForValue();
-    }
+    public void plateauBase(){
+        vueSudoku.display(this);
+    };
 }

@@ -1,8 +1,6 @@
 package pattern.commande;
 
-import pattern.vue.VueSudoku;
-
-public class CommandePlacer extends CommandeGenerale {
+public class CommandePlacer implements CommandeAnnulable {
     @Override
     public void executer() {
         System.out.println("Placement");
