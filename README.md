@@ -6,7 +6,7 @@
 - Single Responsability Principle
   - Elle ne respecte pas le principe de responsabilité unique, elle s'occupe de différentes tâches
 - Open/Closed Principle
-  - Elle ne respecte pas le principe d'ouverture/fermeture, une commande est ajoutée mais peut touchée à l'existant.
+  - Elle ne respecte pas le principe d'ouverture/fermeture, une command est ajoutée mais peut touchée à l'existant.
 - Dependency Inversion Principle
   - Elle ne respecte pas le principe d'inversion de dépendance, l'invocateur ne manipule aucune interface.
 

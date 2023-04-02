@@ -1,23 +1,23 @@
 package pattern.modele;
 
-import pattern.SudokuStrategie;
-import pattern.observer.CaseObserver;
+import pattern.SudokuSolver;
+import pattern.observer.SudokuCellObserver;
 import pattern.observer.SudokuObserver;
-import pattern.vue.VueSudoku;
+import pattern.vue.SudokuView;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class ModelSudoku {
+public class SudokuModel {
 
     private final ArrayList<SudokuObserver> observers = new ArrayList<>();
     private int[][] board;
-    private VueSudoku vueSudoku;
-    private SudokuStrategie strategy;
+    private SudokuView sudokuView;
+    private SudokuSolver strategy;
 
-    public ModelSudoku(String fileName, VueSudoku vueSudoku) {
+    public SudokuModel(String fileName, SudokuView sudokuView) {
         try {
             BufferedReader readerNb = new BufferedReader(new FileReader("dataset/" + fileName));
             BufferedReader reader = new BufferedReader(new FileReader("dataset/" + fileName));
@@ -35,8 +35,8 @@ public class ModelSudoku {
                 }
                 row++;
             }
-            addObserver(new CaseObserver());
-            this.vueSudoku = vueSudoku;
+            addObserver(new SudokuCellObserver());
+            this.sudokuView = sudokuView;
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -112,31 +112,15 @@ public class ModelSudoku {
 
     public void notifyObservers(int row, int col, int value) {
         for (SudokuObserver observer : observers) {
-            observer.update(row, col, value, vueSudoku, this);
+            observer.update(row, col, value, sudokuView, this);
         }
     }
 
-    public void setSudokuStrategy(SudokuStrategie strategy) {
+    public void setSudokuStrategy(SudokuSolver strategy) {
         this.strategy = strategy;
     }
 
-    public Boolean solve() {
-        return strategy.solve(this);
+    public void solve() {
+        strategy.solve(this);
     }
-
-    public void plateauActuelle() {
-        while (!isGameFinished()) {
-            int[] coords = vueSudoku.askUserForCoords();
-            int value = vueSudoku.askUserForValue();
-            if (isValueValid(coords[0], coords[1], value)) { // Model
-                setValueAt(coords[0], coords[1], value); // Model
-            }else{
-                vueSudoku.displayErrorValueMessage();
-            }
-        }
-    }
-
-    public void plateauBase(){
-        vueSudoku.display(this);
-    };
 }

@@ -1643,7 +1643,7 @@
 											"top": 963,
 											"width": 596.81298828125,
 											"height": 13,
-											"text": "+updateSudoku(row: int, col: int, value: int, vueSudoku: VueSudoku, modelSudoku: ModelSudoku): void",
+											"text": "+updateSudoku(row: int, col: int, value: int, sudokuView: VueSudoku, sudokuModel: ModelSudoku): void",
 											"horizontalAlignment": 0
 										}
 									],
@@ -1863,7 +1863,7 @@
 											"top": 1125,
 											"width": 399.47705078125,
 											"height": 13,
-											"text": "+ModelSudoku(fileName: String, vueSudoku: VueSudoku)",
+											"text": "+ModelSudoku(fileName: String, sudokuView: VueSudoku)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -2167,7 +2167,7 @@
 											"top": 816,
 											"width": 367,
 											"height": 13,
-											"text": "+VueSudoku(modelSudoku: ModelSudoku)",
+											"text": "+VueSudoku(sudokuModel: ModelSudoku)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -2751,7 +2751,7 @@
 											"top": 1208,
 											"width": 596.81298828125,
 											"height": 13,
-											"text": "+updateSudoku(row: int, col: int, value: int, vueSudoku: VueSudoku, modelSudoku: ModelSudoku): void",
+											"text": "+updateSudoku(row: int, col: int, value: int, sudokuView: VueSudoku, sudokuModel: ModelSudoku): void",
 											"horizontalAlignment": 0
 										}
 									],
@@ -3230,7 +3230,7 @@
 										"$ref": "AAAAAAGHL0HdI3hqQC8="
 									},
 									"edgePosition": 1,
-									"text": "-vueSudoku"
+									"text": "-sudokuView"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -3607,7 +3607,7 @@
 											"top": 1144,
 											"width": 355.41796875,
 											"height": 13,
-											"text": "+ControllerSudoku(fileName: String, vueSudoku: VueSudoku)",
+											"text": "+ControllerSudoku(fileName: String, sudokuView: VueSudoku)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3836,7 +3836,7 @@
 											"top": 1599,
 											"width": 329.13232421875,
 											"height": 13,
-											"text": "+solve(modelSudoku: ModelSudoku): boolean",
+											"text": "+solve(sudokuModel: ModelSudoku): boolean",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3853,7 +3853,7 @@
 											"top": 1614,
 											"width": 329.13232421875,
 											"height": 13,
-											"text": "-solveCell(row: int, col: int, modelSudoku: ModelSudoku)",
+											"text": "-solveCell(row: int, col: int, sudokuModel: ModelSudoku)",
 											"horizontalAlignment": 0
 										}
 									],
@@ -4316,7 +4316,7 @@
 										"$ref": "AAAAAAGHNBcecuAVVfM="
 									},
 									"edgePosition": 1,
-									"text": "-modelSudoku"
+									"text": "-sudokuModel"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -4793,7 +4793,7 @@
 											"top": 1419,
 											"width": 266.3095703125,
 											"height": 13,
-											"text": "+solve(modelSudoku: ModelSudoku): boolean",
+											"text": "+solve(sudokuModel: ModelSudoku): boolean",
 											"horizontalAlignment": 0
 										}
 									],
@@ -5011,7 +5011,7 @@
 											"top": 1599,
 											"width": 329.13232421875,
 											"height": 13,
-											"text": "+solve(modelSudoku: ModelSudoku): boolean",
+											"text": "+solve(sudokuModel: ModelSudoku): boolean",
 											"horizontalAlignment": 0
 										},
 										{
@@ -5028,7 +5028,7 @@
 											"top": 1614,
 											"width": 329.13232421875,
 											"height": 13,
-											"text": "-solveCell(row: int, col: int, modelSudoku: ModelSudoku)",
+											"text": "-solveCell(row: int, col: int, sudokuModel: ModelSudoku)",
 											"horizontalAlignment": 0
 										}
 									],
@@ -7704,7 +7704,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGHIyLpZrm29jI="
 									},
-									"name": "vueSudoku",
+									"name": "sudokuView",
 									"type": {
 										"$ref": "AAAAAAGHIyOnwbnnkkY="
 									}
@@ -7724,7 +7724,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGHIyLpZrm29jI="
 									},
-									"name": "modelSudoku",
+									"name": "sudokuModel",
 									"type": {
 										"$ref": "AAAAAAGHIyOKd7m9lSQ="
 									}
@@ -7805,7 +7805,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGHL1AY5/yOF/c="
 									},
-									"name": "vueSudoku",
+									"name": "sudokuView",
 									"type": {
 										"$ref": "AAAAAAGHIyOnwbnnkkY="
 									}
@@ -8025,7 +8025,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGHIyOnwbnnkkY="
 							},
-							"name": "vueSudoku",
+							"name": "sudokuView",
 							"end1": {
 								"_type": "UMLAssociationEnd",
 								"_id": "AAAAAAGHL0HdInhnPBU=",
@@ -8143,7 +8143,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGHL1DZcgFwsM0="
 									},
-									"name": "modelSudoku",
+									"name": "sudokuModel",
 									"type": {
 										"$ref": "AAAAAAGHIyOKd7m9lSQ="
 									}
@@ -8356,7 +8356,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGHL0ofSuFdlhw="
 									},
-									"name": "vueSudoku",
+									"name": "sudokuView",
 									"type": {
 										"$ref": "AAAAAAGHIyOnwbnnkkY="
 									}
@@ -8376,7 +8376,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGHL0ofSuFdlhw="
 									},
-									"name": "modelSudoku",
+									"name": "sudokuModel",
 									"type": {
 										"$ref": "AAAAAAGHIyOKd7m9lSQ="
 									}
@@ -8433,7 +8433,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGHNBCKW5El+iI="
 							},
-							"name": "modelSudoku",
+							"name": "sudokuModel",
 							"end1": {
 								"_type": "UMLAssociationEnd",
 								"_id": "AAAAAAGHNBcecuASWhE=",
@@ -8499,7 +8499,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGHNBCmBJGXSs4="
 									},
-									"name": "vueSudoku",
+									"name": "sudokuView",
 									"type": {
 										"$ref": "AAAAAAGHIyOnwbnnkkY="
 									}
@@ -8583,7 +8583,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGHNBH0pp4LTaY="
 									},
-									"name": "modelSudoku",
+									"name": "sudokuModel",
 									"type": {
 										"$ref": "AAAAAAGHIyOKd7m9lSQ="
 									}
@@ -8632,7 +8632,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGHNBKh+p/Nrbo="
 									},
-									"name": "modelSudoku",
+									"name": "sudokuModel",
 									"type": {
 										"$ref": "AAAAAAGHIyOKd7m9lSQ="
 									}
@@ -8698,7 +8698,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGHNvqsJH0IIl4="
 									},
-									"name": "modelSudoku",
+									"name": "sudokuModel",
 									"type": {
 										"$ref": "AAAAAAGHIyOKd7m9lSQ="
 									}
@@ -8761,7 +8761,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGHNvvNnIG0CU0="
 									},
-									"name": "modelSudoku",
+									"name": "sudokuModel",
 									"type": {
 										"$ref": "AAAAAAGHIyOKd7m9lSQ="
 									}
@@ -8810,7 +8810,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGHNvwx0YZJSPg="
 									},
-									"name": "modelSudoku",
+									"name": "sudokuModel",
 									"type": {
 										"$ref": "AAAAAAGHIyOKd7m9lSQ="
 									}

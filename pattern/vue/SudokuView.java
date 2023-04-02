@@ -1,31 +1,29 @@
 package pattern.vue;
 
-import pattern.SudokuStrategie;
-import pattern.commande.CommandePlacer;
-import pattern.commande.CommandeQuitter;
-import pattern.controller.ControllerSudoku;
-import pattern.modele.ModelSudoku;
+import pattern.SudokuSolver;
+import pattern.controller.SudokuController;
+import pattern.modele.SudokuModel;
 
 import java.util.Scanner;
 
-public class VueSudoku {
+public class SudokuView {
 
-    private final ControllerSudoku controllerSudoku;
+    private final SudokuController sudokuController;
 
-    public VueSudoku(String filename) {
-        controllerSudoku = new ControllerSudoku(filename, this);
+    public SudokuView(String filename) {
+        sudokuController = new SudokuController(filename, this);
     }
 
-    public void display(ModelSudoku modelSudoku) {
-        for (int row = 0; row < modelSudoku.getBoardSize(); row++) {
-            if (row % modelSudoku.getBlockSize() == 0) {
+    public void display(SudokuModel sudokuModel) {
+        for (int row = 0; row < sudokuModel.getBoardSize(); row++) {
+            if (row % sudokuModel.getBlockSize() == 0) {
                 System.out.println(" -----------------------");
             }
-            for (int col = 0; col < modelSudoku.getBoardSize(); col++) {
-                if (col % modelSudoku.getBlockSize() == 0) {
+            for (int col = 0; col < sudokuModel.getBoardSize(); col++) {
+                if (col % sudokuModel.getBlockSize() == 0) {
                     System.out.print("| ");
                 }
-                int value = modelSudoku.getValueAt(row, col);
+                int value = sudokuModel.getValueAt(row, col);
                 if (value == 0) {
                     System.out.print("  ");
                 } else {
@@ -77,8 +75,8 @@ public class VueSudoku {
         System.out.println("Invalid value, please try again.");
     }
 
-    public void solve(SudokuStrategie strategy) {
-        controllerSudoku.solve(strategy);
+    public void solve(SudokuSolver strategy) {
+        sudokuController.solve(strategy);
     }
 
 
@@ -89,16 +87,14 @@ public class VueSudoku {
     }
 
     public void affichageJoueur() {
-        controllerSudoku.setCommandes("placer", new CommandePlacer());
-        controllerSudoku.setCommandes("quitter", new CommandeQuitter());
-
         displayWelcomeMessage();
-        controllerSudoku.plateauBase();
-        switch (askTest()) {
-            case 1 -> controllerSudoku.executeCommande("placer");
-            case 2 -> controllerSudoku.undoCommande("placer");
-            case 3 -> controllerSudoku.executeCommande("quitter");
+        if (!sudokuController.stopGame()) {
+            switch (askTest()) {
+                case 1 -> sudokuController.handleUserInput(askUserForCoords(), askUserForValue());
+                case 2 -> sudokuController.undoCommande();
+                case 3 -> displayVictoryMessage();
+            }
         }
-        controllerSudoku.joueurPartie();
     }
+
 }

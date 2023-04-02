@@ -1,8 +1,8 @@
 package pattern.observer;
 
-import pattern.modele.ModelSudoku;
-import pattern.vue.VueSudoku;
+import pattern.modele.SudokuModel;
+import pattern.vue.SudokuView;
 
 public interface SudokuObserver {
-    void update(int row, int col, int value, VueSudoku vueSudoku, ModelSudoku modelSudoku);
+    void update(int row, int col, int value, SudokuView sudokuView, SudokuModel sudokuModel);
 }
