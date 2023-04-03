@@ -14,6 +14,9 @@ public class SudokuView {
         sudokuController.displayStrategy();
     }
 
+    /**
+     * Affiche la grille du sudoku
+     */
     public void display() {
         for (int row = 0; row < sudokuController.getBoardSize(); row++) {
             if (row % sudokuController.getBlockSize() == 0) {
@@ -40,11 +43,19 @@ public class SudokuView {
         //System.out.println("Please enter the board size:");
     }
 
-    /*
-    Cette méthode utilise un objet Scanner pour lire les entrées de l'utilisateur à partir de la console.
-    Elle demande d'abord le numéro de ligne et ensuite le numéro de colonne, en soustrayant 1 de chaque
-    numéro pour convertir l'indexage en 0-based. Elle renvoie un tableau d'entiers contenant les coordonnées
-    saisies par l'utilisateur.
+    /**
+     * Affiche un quand le sudoku est résolu par l'utilisateur
+     */
+    public void displayVictoryMessage() {
+        System.out.println("Congratulations, you won the game!");
+    }
+
+
+    /**
+     * Utilise un objet Scanner pour lire les entrées de l'utilisateur à partir de la console.
+     * Elle demande d'abord le numéro de ligne et ensuite le numéro de colonne, en soustrayant 1 de chaque
+     * numéro pour convertir l'indexage en 0-based. Elle renvoie un tableau d'entiers contenant les coordonnées
+     * saisies par l'utilisateur.
      */
 
     public int[] askUserForCoords() {
@@ -57,9 +68,9 @@ public class SudokuView {
         return coords;
     }
 
-    /*
-    Cette méthode affiche un message demandant à l'utilisateur d'entrer une valeur entre 1 et 9, puis lit l'entrée
-    utilisateur à partir de la console à l'aide de la classe Scanner. Elle renvoie la valeur saisie sous forme d'un entier.
+    /**
+     * Affiche un message demandant à l'utilisateur d'entrer une valeur entre 1 et 9, puis lit l'entrée
+     * utilisateur à partir de la console à l'aide de la classe Scanner. Elle renvoie la valeur saisie sous forme d'un entier.
      */
     public int askUserForValue() {
         System.out.print("Enter value (1-9): ");
@@ -67,22 +78,30 @@ public class SudokuView {
         return Integer.parseInt(scanner.nextLine());
     }
 
+    /**
+     * Affiche un message demandant à l'utilisateur de choisir une stratégie
+     * @return la stratégie choisie
+     */
     public int askStrategy() {
         System.out.print("1 - Solve\n2 - play\n-> ");
         Scanner scanner = new Scanner(System.in);
         return Integer.parseInt(scanner.nextLine());
     }
 
+    /**
+     * Affiche un message demandant à l'utilisateur de choisir une commande
+     * @return la commande choisie
+     */
     public int askCommand() {
         System.out.print("1 - Placer\n2 - Annuler\n3 - Terminer partie\n-> ");
         Scanner scanner = new Scanner(System.in);
         return Integer.parseInt(scanner.nextLine());
     }
 
-    public void displayVictoryMessage() {
-        System.out.println("Congratulations, you won the game!");
-    }
-
+    /**
+     * Résout le sudoku avec la stratégie choisie
+     * @param strategy la stratégie choisie
+     */
     public void solve(SudokuSolver strategy) {
         sudokuController.solve(strategy);
     }

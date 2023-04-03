@@ -5,10 +5,22 @@ import pattern.modele.SudokuModel;
 
 public class BacktrackingSolver implements SudokuSolver {
 
+    /**
+     * Résoud la grille de Sudoku
+     * @param sudoku la grille à résoudre
+     * @return true si la grille a été résolue, false sinon
+     */
     public boolean solve(SudokuModel sudoku) {
         return solveCell(0, 0, sudoku);
     }
 
+    /**
+     * Résoud la grille de Sudoku à partir de la cellule spécifiée
+     * @param row ligne
+     * @param column colonne
+     * @param sudoku la grille à résoudre
+     * @return true si la grille a été résolue, false sinon
+     */
     private boolean solveCell(int row, int column, SudokuModel sudoku) {
         // Si on a parcouru toutes les cellules, la grille est résolue
         if (row == sudoku.getBoardSize()) {
