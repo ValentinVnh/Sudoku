@@ -20,11 +20,11 @@ public class SudokuView {
     public void display() {
         for (int row = 0; row < sudokuController.getBoardSize(); row++) {
             if (row % sudokuController.getBlockSize() == 0) {
-                System.out.println("\033[1m -----------------------\033[0m");
+                System.out.println(" -----------------------");
             }
             for (int col = 0; col < sudokuController.getBoardSize(); col++) {
                 if (col % sudokuController.getBlockSize() == 0) {
-                    System.out.print("\033[1m| \033[0m");
+                    System.out.print("| ");
                 }
                 int value = sudokuController.getValueAt(row, col);
                 if (value == 0) {
@@ -33,14 +33,13 @@ public class SudokuView {
                     System.out.print(value + " ");
                 }
             }
-            System.out.println("\033[1m|\033[0m");
+            System.out.println("|");
         }
-        System.out.println("\033[1m -----------------------\033[0m");
+        System.out.println(" -----------------------");
     }
 
     public void displayWelcomeMessage() {
         System.out.println("\033[7mWelcome to Sudoku game!\033[0m");
-        //System.out.println("Please enter the board size:");
     }
 
     /**
