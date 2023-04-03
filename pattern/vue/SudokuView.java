@@ -9,8 +9,8 @@ public class SudokuView {
 
     private final SudokuController sudokuController;
 
-    public SudokuView(String filename) {
-        sudokuController = new SudokuController(filename, this);
+    public SudokuView() throws InterruptedException {
+        sudokuController = new SudokuController(this);
         sudokuController.displayStrategy();
     }
 
@@ -79,23 +79,33 @@ public class SudokuView {
     }
 
     /**
+     * Affiche un message demandant à l'utilisateur de choisir la difficulté
+     * @return la difficulté choisie
+     */
+    public String askLevel() {
+        System.out.println("The available difficulties are \"Hard\", \"Medium\", \"Low\"");
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextLine().toLowerCase();
+    }
+
+    /**
      * Affiche un message demandant à l'utilisateur de choisir une stratégie
      * @return la stratégie choisie
      */
-    public int askStrategy() {
-        System.out.print("1 - Solve\n2 - play\n-> ");
+    public String askStrategy() {
+        System.out.print("Available strategies are \"Solve\", \"Play\" \n-> ");
         Scanner scanner = new Scanner(System.in);
-        return Integer.parseInt(scanner.nextLine());
+        return scanner.nextLine().toLowerCase();
     }
 
     /**
      * Affiche un message demandant à l'utilisateur de choisir une commande
      * @return la commande choisie
      */
-    public int askCommand() {
-        System.out.print("1 - Placer\n2 - Annuler\n3 - Terminer partie\n-> ");
+    public String askCommand() {
+        System.out.print("Available actions are \"Place\", \"Undo\", \"Exit\" \n-> ");
         Scanner scanner = new Scanner(System.in);
-        return Integer.parseInt(scanner.nextLine());
+        return scanner.nextLine().toLowerCase();
     }
 
     /**

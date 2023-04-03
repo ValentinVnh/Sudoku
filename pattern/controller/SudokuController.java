@@ -11,6 +11,8 @@ import pattern.vue.SudokuView;
 
 import java.util.Stack;
 
+import static java.lang.Thread.sleep;
+
 public class SudokuController {
 
     private final Stack<SudokuCommand> historique;
@@ -19,13 +21,13 @@ public class SudokuController {
 
     /**
      * Constructeur
-     * @param filename nom du fichier
      * @param sudokuView vue
      */
-    public SudokuController(String filename, SudokuView sudokuView) {
-        this.sudokuModel = new SudokuModel(filename, sudokuView);
-        this.historique = new Stack<>();
+    public SudokuController(SudokuView sudokuView) {
         this.sudokuView = sudokuView;
+        this.sudokuModel = new SudokuModel(displayLevel(), sudokuView);
+        this.historique = new Stack<>();
+
     }
 
     /**
@@ -107,14 +109,36 @@ public class SudokuController {
     /**
      * Demande à l'utilisateur quelle stratégie il souhaite utiliser
      */
-    public void displayStrategy() {
+    public void displayStrategy() throws InterruptedException {
         sudokuView.displayWelcomeMessage();
         sudokuView.display();
         switch (sudokuView.askStrategy()) {
-            case 1 -> solve(new BacktrackingSolver());
-            case 2 -> displayPlayer();
-            default -> displayStrategy();
+            case "solve" -> solve(new BacktrackingSolver());
+            case "play" -> displayPlayer();
+            default -> {
+                System.out.println("invalid choice, rebooting in 3 seconds");
+                for (int i = 3; i >= 1; i--) {
+                    System.out.println(i);
+                    Thread.sleep(1000);
+                }
+                displayStrategy();
+            }
         }
+    }
+
+    /**
+     * Demande à l'utilisateur quel niveau de difficulté il souhaite
+     * @return le fichier correspondant au niveau de difficulté
+     */
+    public String displayLevel(){
+        String level = "";
+        switch (sudokuView.askLevel()){
+            case "hard" -> level = "sudoku3.txt";
+            case "medium" -> level = "sudoku2.txt";
+            case "low" -> level = "sudoku1.txt";
+            default -> level = "sudoku1.txt";
+        }
+        return level;
     }
 
     /**
@@ -123,9 +147,9 @@ public class SudokuController {
     public void displayPlayer() {
         while (!isGameFinished()) {
             switch (sudokuView.askCommand()) {
-                case 1 -> handleUserInput(sudokuView.askUserForCoords(), sudokuView.askUserForValue());
-                case 2 -> undoCommande();
-                case 3 -> exitGame();
+                case "place" -> handleUserInput(sudokuView.askUserForCoords(), sudokuView.askUserForValue());
+                case "undo" -> undoCommande();
+                case "exit" -> exitGame();
                 default -> System.out.println("Choix invalide");
             }
         }
