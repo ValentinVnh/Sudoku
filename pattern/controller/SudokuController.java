@@ -136,7 +136,10 @@ public class SudokuController {
             case "hard" -> level = "sudoku3.txt";
             case "medium" -> level = "sudoku2.txt";
             case "low" -> level = "sudoku1.txt";
-            default -> level = "sudoku1.txt";
+            default -> {
+                System.out.println("invalid choice, the default choice is: low");
+                level = "sudoku1.txt";
+            }
         }
         return level;
     }
