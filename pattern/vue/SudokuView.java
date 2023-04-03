@@ -2,7 +2,6 @@ package pattern.vue;
 
 import pattern.SudokuSolver;
 import pattern.controller.SudokuController;
-import pattern.modele.SudokuModel;
 
 import java.util.Scanner;
 
@@ -12,18 +11,19 @@ public class SudokuView {
 
     public SudokuView(String filename) {
         sudokuController = new SudokuController(filename, this);
+        sudokuController.displayStrategy();
     }
 
-    public void display(SudokuModel sudokuModel) {
-        for (int row = 0; row < sudokuModel.getBoardSize(); row++) {
-            if (row % sudokuModel.getBlockSize() == 0) {
+    public void display() {
+        for (int row = 0; row < sudokuController.getBoardSize(); row++) {
+            if (row % sudokuController.getBlockSize() == 0) {
                 System.out.println(" -----------------------");
             }
-            for (int col = 0; col < sudokuModel.getBoardSize(); col++) {
-                if (col % sudokuModel.getBlockSize() == 0) {
+            for (int col = 0; col < sudokuController.getBoardSize(); col++) {
+                if (col % sudokuController.getBlockSize() == 0) {
                     System.out.print("| ");
                 }
-                int value = sudokuModel.getValueAt(row, col);
+                int value = sudokuController.getValueAt(row, col);
                 if (value == 0) {
                     System.out.print("  ");
                 } else {
@@ -37,7 +37,7 @@ public class SudokuView {
 
     public void displayWelcomeMessage() {
         System.out.println("Welcome to Sudoku game!");
-        System.out.println("Please enter the board size:");
+        //System.out.println("Please enter the board size:");
     }
 
     /*
@@ -67,34 +67,24 @@ public class SudokuView {
         return Integer.parseInt(scanner.nextLine());
     }
 
-    public void displayVictoryMessage() {
-        System.out.println("Congratulations, you won the game!");
+    public int askStrategy() {
+        System.out.print("1 - Solve\n2 - play\n-> ");
+        Scanner scanner = new Scanner(System.in);
+        return Integer.parseInt(scanner.nextLine());
     }
 
-    public void displayErrorValueMessage() {
-        System.out.println("Invalid value, please try again.");
-    }
-
-    public void solve(SudokuSolver strategy) {
-        sudokuController.solve(strategy);
-    }
-
-
-    public int askTest() {
+    public int askCommand() {
         System.out.print("1 - Placer\n2 - Annuler\n3 - Terminer partie\n-> ");
         Scanner scanner = new Scanner(System.in);
         return Integer.parseInt(scanner.nextLine());
     }
 
-    public void affichageJoueur() {
-        displayWelcomeMessage();
-        if (!sudokuController.stopGame()) {
-            switch (askTest()) {
-                case 1 -> sudokuController.handleUserInput(askUserForCoords(), askUserForValue());
-                case 2 -> sudokuController.undoCommande();
-                case 3 -> displayVictoryMessage();
-            }
-        }
+    public void displayVictoryMessage() {
+        System.out.println("Congratulations, you won the game!");
+    }
+
+    public void solve(SudokuSolver strategy) {
+        sudokuController.solve(strategy);
     }
 
 }

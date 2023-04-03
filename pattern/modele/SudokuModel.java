@@ -112,7 +112,7 @@ public class SudokuModel {
 
     public void notifyObservers(int row, int col, int value) {
         for (SudokuObserver observer : observers) {
-            observer.update(row, col, value, sudokuView, this);
+            observer.update(row, col, value, sudokuView);
         }
     }
 

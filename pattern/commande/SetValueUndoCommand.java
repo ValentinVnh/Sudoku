@@ -2,7 +2,7 @@ package pattern.commande;
 
 import pattern.modele.SudokuModel;
 
-public class SetValueCommand implements SudokuCommand {
+public class SetValueUndoCommand implements SudokuUndoCommand {
 
     SudokuModel model;
     int row;
@@ -10,11 +10,12 @@ public class SetValueCommand implements SudokuCommand {
     int newValue;
     int oldValue;
 
-    public SetValueCommand(SudokuModel model, int row, int col, int newValue) {
+    public SetValueUndoCommand(SudokuModel model, int row, int col, int newValue) {
         this.model = model;
         this.row = row;
         this.col = col;
         this.newValue = newValue;
+        this.oldValue = model.getValueAt(row, col);
     }
 
     @Override
