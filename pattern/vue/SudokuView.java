@@ -39,14 +39,14 @@ public class SudokuView {
     }
 
     public void displayWelcomeMessage() {
-        System.out.println("\033[7mWelcome to Sudoku game!\033[0m");
+        System.out.println("Welcome to Sudoku game!");
     }
 
     /**
      * Affiche un quand le sudoku est résolu par l'utilisateur
      */
     public void displayVictoryMessage() {
-        System.out.println("\033[41mCongratulations, you won the game!\033[0m");
+        System.out.println("Congratulations, you won the game!");
     }
 
 
@@ -60,9 +60,9 @@ public class SudokuView {
     public int[] askUserForCoords() {
         Scanner scanner = new Scanner(System.in);
         int[] coords = new int[2];
-        System.out.println("Enter row number \033[91m(1-9)\033[0m:");
+        System.out.println("Enter row number (1-9):");
         coords[0] = Integer.parseInt(scanner.nextLine()) - 1; // Convert to 0-based indexing
-        System.out.println("Enter column number \033[91m(1-9)\033[0m:");
+        System.out.println("Enter column number (1-9):");
         coords[1] = Integer.parseInt(scanner.nextLine()) - 1; // Convert to 0-based indexing
         return coords;
     }
@@ -72,7 +72,7 @@ public class SudokuView {
      * utilisateur à partir de la console à l'aide de la classe Scanner. Elle renvoie la valeur saisie sous forme d'un entier.
      */
     public int askUserForValue() {
-        System.out.print("Enter value \033[91m(1-9)\033[0m: ");
+        System.out.print("Enter value (1-9): ");
         Scanner scanner = new Scanner(System.in);
         return Integer.parseInt(scanner.nextLine());
     }
@@ -82,7 +82,7 @@ public class SudokuView {
      * @return la difficulté choisie
      */
     public String askLevel() {
-        System.out.println("The available difficulties are \033[91m\"Hard\", \"Medium\", \"Low\"\033[0m \n->");
+        System.out.println("The available difficulties are \"Hard\", \"Medium\", \"Low\" \n->");
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine().toLowerCase();
     }
@@ -92,7 +92,7 @@ public class SudokuView {
      * @return la stratégie choisie
      */
     public String askStrategy() {
-        System.out.print("Available strategies are \033[91m\"Solve\", \"Play\"\033[0m \n-> ");
+        System.out.print("Available strategies are \"Solve\", \"Play\" \n-> ");
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine().toLowerCase();
     }
@@ -102,7 +102,7 @@ public class SudokuView {
      * @return la commande choisie
      */
     public String askCommand() {
-        System.out.print("Available actions are \033[91m\"Place\", \"Undo\", \"Exit\"\033[0m \n-> ");
+        System.out.print("Available actions are \"Place\", \"Undo\", \"Exit\" \n-> ");
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine().toLowerCase();
     }

@@ -11,8 +11,6 @@ import pattern.vue.SudokuView;
 
 import java.util.Stack;
 
-import static java.lang.Thread.sleep;
-
 public class SudokuController {
 
     private final Stack<SudokuCommand> historique;
@@ -21,6 +19,7 @@ public class SudokuController {
 
     /**
      * Constructeur
+     *
      * @param sudokuView vue
      */
     public SudokuController(SudokuView sudokuView) {
@@ -32,6 +31,7 @@ public class SudokuController {
 
     /**
      * Résout le sudoku
+     *
      * @param strategy stratégie de résolution
      */
     public void solve(SudokuSolver strategy) {
@@ -55,8 +55,9 @@ public class SudokuController {
 
     /**
      * Gère l'entrée utilisateur pour le choix de la nouvelle valeur à l'emplacement souhaité
+     *
      * @param rowCol coordonnées de la case
-     * @param value nouvelle valeur
+     * @param value  nouvelle valeur
      */
     public void handleUserInput(int[] rowCol, int value) {
         SudokuCommand command = new SetValueCommand(sudokuModel, rowCol[0], rowCol[1], value);
@@ -74,6 +75,7 @@ public class SudokuController {
 
     /**
      * Vérifie si la partie est terminée
+     *
      * @return true si la partie est terminée, false sinon
      */
     public boolean isGameFinished() {
@@ -82,6 +84,7 @@ public class SudokuController {
 
     /**
      * Retourne la taille du sudoku
+     *
      * @return taille du sudoku
      */
     public int getBoardSize() {
@@ -90,6 +93,7 @@ public class SudokuController {
 
     /**
      * Retourne la taille d'un bloc
+     *
      * @return taille d'un bloc
      */
     public int getBlockSize() {
@@ -98,6 +102,7 @@ public class SudokuController {
 
     /**
      * Retourne la valeur d'une case
+     *
      * @param row ligne
      * @param col colonne
      * @return valeur de la case
@@ -128,11 +133,12 @@ public class SudokuController {
 
     /**
      * Demande à l'utilisateur quel niveau de difficulté il souhaite
+     *
      * @return le fichier correspondant au niveau de difficulté
      */
-    public String displayLevel(){
+    public String displayLevel() {
         String level = "";
-        switch (sudokuView.askLevel()){
+        switch (sudokuView.askLevel()) {
             case "hard" -> level = "sudoku3.txt";
             case "medium" -> level = "sudoku2.txt";
             case "low" -> level = "sudoku1.txt";

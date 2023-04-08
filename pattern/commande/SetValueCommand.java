@@ -4,11 +4,11 @@ import pattern.modele.SudokuModel;
 
 public class SetValueCommand implements SudokuUndoCommand {
 
-    SudokuModel model;
-    int row;
-    int col;
-    int newValue;
-    int oldValue;
+    private final SudokuModel model;
+    private final int row;
+    private final int col;
+    private final int newValue;
+    private int oldValue;
 
     /**
      * Modifie la valeur d'une case du modèle
